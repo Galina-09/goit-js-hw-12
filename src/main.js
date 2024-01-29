@@ -12,11 +12,6 @@ const refs = {
   btnMore: document.querySelector('.load-btn'),
 };
 
-const gallery = new SimpleLightbox('.gallery-item a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
-
 const queryParams = {
   query: '',
   page: 1,
