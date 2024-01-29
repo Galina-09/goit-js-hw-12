@@ -21,7 +21,7 @@ const queryParams = {
   query: '',
   page: 1,
   maxPage: 0,
-  per_page: 40,
+  per_page: 100,
 };
 const hiddenClass = 'is-hidden';
 
@@ -86,6 +86,7 @@ async function handleLoadMore() {
     hideLoader();
     refs.btnMore.disabled = false;
     if (queryParams.page === queryParams.maxPage) {
+      showMessage("We're sorry, but you've reached the end of search results.");
       refs.btnMore.classList.add(hiddenClass);
       refs.btnMore.removeEventListener('click', handleLoadMore);
     }
