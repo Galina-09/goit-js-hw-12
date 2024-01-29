@@ -21,7 +21,7 @@ const queryParams = {
   query: '',
   page: 1,
   maxPage: 0,
-  per_page: 100,
+  per_page: 40,
 };
 const hiddenClass = 'is-hidden';
 
