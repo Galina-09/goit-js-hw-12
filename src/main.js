@@ -42,7 +42,7 @@ async function handleSearch(event) {
     queryParams.maxPage = Math.ceil(totalHits / queryParams.per_page);
     //refs.imageList.innerHTML += createMarkup(hits);
     refs.imageList.insertAdjacentHTML('beforeend', createMarkup(hits));
-
+    gallery.refresh();
     if (hits.length === 0) {
       showMessage(
         'Sorry, there are no images matching your search query. Please, try again!'
@@ -72,7 +72,7 @@ async function handleLoadMore() {
     const { hits } = await getImage(queryParams);
 
     refs.imageList.insertAdjacentHTML('beforeend', createMarkup(hits));
-
+    gallery.refresh();
     if (hits.length > 0) {
       refs.btnMore.classList.remove(hiddenClass);
       refs.btnMore.addEventListener('click', handleLoadMore);
@@ -81,7 +81,7 @@ async function handleLoadMore() {
       showMessage("We're sorry, but you've reached the end of search results.");
     }
   } catch (error) {
-    handleError(error);
+    showMessage('Sorry, there is a problem with connection with the server.');
   } finally {
     hideLoader();
     refs.btnMore.disabled = false;
@@ -90,6 +90,5 @@ async function handleLoadMore() {
       refs.btnMore.removeEventListener('click', handleLoadMore);
     }
     scrollBy();
-    gallery.refresh();
   }
 }
